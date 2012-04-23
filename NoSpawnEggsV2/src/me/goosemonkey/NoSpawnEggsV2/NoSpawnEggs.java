@@ -1,14 +1,19 @@
 package me.goosemonkey.NoSpawnEggsV2;
 
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class NoSpawnEggs extends JavaPlugin
 {
+	static ConfigMain mainConfig;
+	static ConfigLocale localeConfig;
+	
 	@Override
 	public void onEnable()
 	{
-		
+		NoSpawnEggs.mainConfig = new ConfigMain(this);
+		NoSpawnEggs.localeConfig = new ConfigLocale(this);
 	}
 	
 	/**
@@ -27,6 +32,24 @@ public class NoSpawnEggs extends JavaPlugin
 			return;
 		
 		this.getServer().getPluginManager().registerEvents(listener, this);
+	}
+	
+	/**
+	 * Get the plugin's main configuration
+	 * @return FileConfiguration for MainConfig.yml
+	 */
+	public static FileConfiguration getMainConfig()
+	{
+		return mainConfig.getConfig();
+	}
+
+	/**
+	 * Get the plugin's locale configuration
+	 * @return FileConfiguration for Locale.yml
+	 */
+	public static FileConfiguration getLocaleConfig()
+	{
+		return localeConfig.getConfig();
 	}
 	
 	/**
