@@ -1,6 +1,8 @@
 package me.goosemonkey.NoSpawnEggsV2;
 
-public class NoSpawnEggs
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class NoSpawnEggs extends JavaPlugin
 {
 	
 }
