@@ -1,5 +1,6 @@
 package me.goosemonkey.NoSpawnEggsV2;
 
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class NoSpawnEggs extends JavaPlugin
@@ -8,6 +9,24 @@ public class NoSpawnEggs extends JavaPlugin
 	public void onEnable()
 	{
 		
+	}
+	
+	/**
+	 * Registers a listener after checking that the plugin version allows it
+	 * @param required Minimum plugin version this listener needs to work
+	 * @param listener The listener
+	 */
+	void registerListenerClass(PluginVersion required, Listener listener)
+	{
+		PluginVersion current = NoSpawnEggs.getVersion();
+		
+		if (required == PluginVersion.FULL && current != PluginVersion.FULL)
+			return;
+		
+		if (required == PluginVersion.MODERATE && current == PluginVersion.LIGHT)
+			return;
+		
+		this.getServer().getPluginManager().registerEvents(listener, this);
 	}
 	
 	/**
